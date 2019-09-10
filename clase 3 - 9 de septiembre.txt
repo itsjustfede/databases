@@ -1,0 +1,37 @@
+TABLA PROVEEDORES
+CREATE TABLE proveedores (
+    numero INT NOT NULL,
+    nombre VARCHAR (50) NOT NULL,
+    domicilio VARCHAR (50) NOT NULL,
+    localidad VARCHAR (50) NOT NULL,
+	CONSTRAINT pk_numero PRIMARY KEY (numero));
+
+TABLA PRODUCTOS
+CREATE TABLE productos (
+    pnro INT NOT NULL,
+    pnombre VARCHAR (50) NOT NULL,
+    precio FLOAT NOT NULL,
+    tamaño VARCHAR (20) NOT NULL,
+    localidad VARCHAR (30) NOT NULL,
+    CONSTRAINT pk_pnro PRIMARY KEY (pnro));
+
+TABLA PROV_PROD
+CREATE TABLE prov_prod (
+    numero INT NOT NULL,
+	pnro INT NOT NULL,
+    cantidad INT NOT NULL,
+    CONSTRAINT fk_numero FOREIGN KEY (numero) REFERENCES proveedores(numero),
+    CONSTRAINT fk_pnro FOREIGN KEY (pnro) REFERENCES productos(pnro)
+);
+
+AÑADIMOS PRIMARY KEY A PROV_PROD
+
+ALTER TABLE prov_prod
+    ADD (CONSTRAINT pk_numero_pnro PRIMARY KEY(numero, pnro)
+);
+
+arreglar
+ALTER TABLE prov_prod
+    ADD CONSTRAINT fk_numero 
+    FOREIGN KEY(numero) 
+    REFERENCES productos(numero);
