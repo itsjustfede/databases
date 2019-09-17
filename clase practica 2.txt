@@ -1,0 +1,31 @@
+Ejercicio 2:
+
+Creacion de tablas
+
+CREATE TABLE CLIENTES 
+	(codigo_cliente INT, 
+     nombre VARCHAR (100),
+     domicilio VARCHAR (100),
+     provincia VARCHAR (100),
+     CONSTRAINT pk_codigo_clientes PRIMARY KEY (codigo_cliente));
+
+CREATE TABLE PRODUCTOS 
+	(codigo_producto INT, 
+     nombre_producto VARCHAR (100),
+     CONSTRAINT pk_codigo_producto PRIMARY KEY (codigo_producto));
+
+
+CREATE TABLE VENTAS 
+	(numero_factura INT, 
+     codigo_cliente VARCHAR (100),
+     fecha VARCHAR (100),
+     CONSTRAINT pk_numero_factura PRIMARY KEY (numero_factura));
+
+CREATE TABLE ITEM_VENTAS 
+	(numero_factura INT, 
+     codigo_producto INT,
+     cantidad INT,
+     precio INT,
+     CONSTRAINT pK_numero_factura_codigo_producto PRIMARY KEY (numero_factura, codigo_producto),
+     CONSTRAINT fk_numero_factura FOREIGN KEY (numero_factura) REFERENCES ventas(numero_factura),
+     CONSTRAINT fk_codigo_producto FOREIGN KEY (codigo_producto) REFERENCES productos(codigo_producto));
